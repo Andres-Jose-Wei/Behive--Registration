@@ -1,5 +1,6 @@
 package com.weiwudev.controller;
 
+import com.weiwudev.models.ResponseObject;
 import com.weiwudev.models.User;
 import com.weiwudev.services.RegistrationService;
 import lombok.AllArgsConstructor;
@@ -17,10 +18,10 @@ public class RegistrationController {
     RegistrationService registrationService;
 
     @PostMapping("/register")
-    public Mono<ResponseEntity<String>> registerUser(@RequestBody User user){
+    public Mono<ResponseEntity<ResponseObject>> registerUser(@RequestBody User user){
 
-        return registrationService.registerUser(user).flatMap(data -> Mono.just(ResponseEntity.status(HttpStatus.OK).body(data))).onErrorReturn(
-                ResponseEntity.status(HttpStatus.CONFLICT).body("username already exist"));
+        return registrationService.registerUser(user).flatMap(data -> Mono.just(ResponseEntity.status(HttpStatus.OK).body(new ResponseObject(data)))).onErrorReturn(
+                ResponseEntity.status(HttpStatus.CONFLICT).body(new ResponseObject("error creating account, username may already exist")));
     }
     @PostMapping("/check")
     public Mono<String> check(@RequestBody User user){
