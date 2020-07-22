@@ -18,5 +18,8 @@ public class RegistrationController {
     public Mono<String> registerUser(@RequestBody User user){
         return registrationService.registerUser(user);
     }
-
+    @PostMapping("/check")
+    public Mono<String> check(@RequestBody User user){
+        return Mono.just("Worked");
+    }
 }
