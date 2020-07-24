@@ -2,7 +2,7 @@ spring:
   application:
     name: ${app_name:RegistrationService}
   profiles:
-    active: ${profile:default}
+    active: ${active_profile}
 
   cloud:
     config:
