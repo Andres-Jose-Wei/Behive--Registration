@@ -6,6 +6,7 @@ import lombok.AllArgsConstructor;
 import lombok.NoArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.cloud.context.config.annotation.RefreshScope;
 import org.springframework.stereotype.Service;
 import org.springframework.web.reactive.function.client.WebClient;
 import reactor.core.publisher.Mono;
@@ -16,6 +17,7 @@ import java.util.List;
 @Service
 @AllArgsConstructor
 @NoArgsConstructor
+@RefreshScope
 public class RegistrationServiceImpl implements RegistrationService {
 
     @Value("${registration_service.authService_uri}")

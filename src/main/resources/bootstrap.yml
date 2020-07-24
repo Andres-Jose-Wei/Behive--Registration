@@ -1,8 +1,11 @@
 spring:
   application:
-    name: RegistrationService
+    name: ${app_name:RegistrationService}
+  profiles:
+    active: ${profile:default}
 
   cloud:
     config:
       uri: ${config_uri:http://localhost:8888}
-
+      username: ${spring_config_security_username}
+      password: ${spring_config_security_password}
